@@ -1,27 +1,21 @@
-<p id="notice"><%= notice %></p>
 
-<h1>Links</h1>
+  <p class="alert alert-warning"><%= notice %></p>
 
-<table>
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Url</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+<h1 class="text-center">All Articles</h1>
 
-  <tbody>
     <% @links.each do |link| %>
-      <tr>
-        <td><%= link.title %></td>
-        <td><%= link.url %></td>
-        <td><%= link_to 'Show', link %></td>
+    <div class="row">
+      <div class="panel panel-info col-md-9">
+          <h3><%= link_to link.title.capitalize, link_path(link) %></h3>
+        <div class="panel-body"><%= link.url %><br>
+        <div class="small"><%= time_ago_in_words(link.created_at) %> ago</div>
+        <br>
+        <div class="btn btn-default"><%= link_to 'Show', link %></div>
         <% if link.user == current_user %>
-          <td><%= link_to 'Edit', edit_link_path(link) %></td>
-          <td><%= link_to 'Destroy', link, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <div class="btn btn-default"><%= link_to 'Edit', edit_link_path(link) %></div>
+          <div class="btn btn-default"><%= link_to 'Destroy', link, method: :delete, data: { confirm: 'Are you sure?' } %></div>
         <% end %>
-      </tr>
+        </div>
+      </div>
+    </div>
     <% end %>
-  </tbody>
-</table>
