@@ -10,6 +10,16 @@
         <div class="panel-body"><%= link.url %><br>
         <div class="small"><%= time_ago_in_words(link.created_at) %> ago</div>
         <br>
+        <%= link_to Like_link_url(link), method: :put, class: 'btn btn-primary' do %>
+          <i class="fa fa-thumbs-o-up" aria-hidden="true"></i>
+          Like
+          <%= link.get_upvotes.size %>
+        <% end %>
+        <%= link_to Dislike_link_url(link), method: :put, class: 'btn btn-danger' do %>
+          <i class="fa fa-thumbs-o-down" aria-hidden="true"></i>
+          Dislike
+          <%= link.get_downvotes.size %>
+        <% end %>
         <div class="btn btn-default"><%= link_to 'Show', link %></div>
         <% if link.user == current_user %>
           <div class="btn btn-default"><%= link_to 'Edit', edit_link_path(link) %></div>
